@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'redis'
 
 get '*' do
   redis.get deploy_key
