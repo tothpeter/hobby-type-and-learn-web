@@ -16,6 +16,7 @@ GEM
       rack
     raindrops (0.15.0)
     rake (10.4.2)
+    redis (3.2.1)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -35,6 +36,7 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano
+  redis
   sinatra
   unicorn
 
