@@ -11,5 +11,6 @@ end
 
 group :development do
   gem 'capistrano'
+  gem 'capistrano-bundler', '~> 1.1.2'
   gem 'shotgun'
 end
