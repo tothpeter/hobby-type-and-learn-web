@@ -1,7 +1,9 @@
 require 'sinatra'
 
 get '*' do
-  redis.get deploy_key
+  html = redis.get deploy_key
+
+  insert_current_user_meta html
 end
 
 def deploy_key
@@ -23,4 +25,16 @@ def redis
   else
     redis = Redis.new()
   end
+end
+
+def insert_current_user_meta html
+  html.insert(head_pos(html), "<meta name='current-user' content='#{current_user_json}'>")
+end
+
+def head_pos html
+  html.index(">", html.index("<head")) + 1
+end
+
+def current_user_json
+  "{a:1}"
 end
