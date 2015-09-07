@@ -1,4 +1,5 @@
-require 'sinatra'
+require 'bundler'
+Bundler.require
 
 get '*' do
   html = redis.get deploy_key
