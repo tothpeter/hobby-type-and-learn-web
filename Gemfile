@@ -4,6 +4,10 @@ ruby '2.2.3'
 
 gem 'sinatra'
 
+group :production do
+  gem 'unicorn'
+end
+
 group :development do
   gem 'capistrano'
 end
