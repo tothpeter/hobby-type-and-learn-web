@@ -1,13 +1,24 @@
 require 'bundler'
 Bundler.require
 
-ActiveRecord::Base.establish_connection(
+if settings.production?
+  ActiveRecord::Base.establish_connection(
+    :adapter  => "postgresql",
+    :username => ENV['TYPE_AND_LEARN_API_DATABASE_USER'],
+    :password => ENV['TYPE_AND_LEARN_API_DATABASE_PASSWORD'],
+    :database => "type_and_learn_api_production",
+    :encoding => "unicode",
+    :pool => 5
+  )
+else
+  ActiveRecord::Base.establish_connection(
   :adapter  => "postgresql",
-  # :host     => "localhost",
-  # :username => "",
-  # :password => "",
-  :database => "type_and_learn_api_development"
+  :database => "type_and_learn_api_development",
+  :encoding => "unicode",
+  :pool => 5
 )
+end
+
 
 class User < ActiveRecord::Base
   has_many :labels
