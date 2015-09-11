@@ -58,13 +58,7 @@ def deploy_key
 end
 
 def redis
-  # settings.development?
-  # settings.production?
-  if ENV['REDISTOGO_URL']
-    Redis.new(:url => ENV['REDISTOGO_URL'])
-  else
-    redis = Redis.new()
-  end
+  @redis ||= Redis.new
 end
 
 def insert_current_user_meta html
@@ -86,5 +80,5 @@ def head_pos html
 end
 
 def current_user
-  user = User.find_by auth_token_for_web: cookies[:auth_token_for_web]
+  User.find_by auth_token_for_web: cookies[:auth_token_for_web]
 end
