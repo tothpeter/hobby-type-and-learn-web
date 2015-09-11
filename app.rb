@@ -47,11 +47,10 @@ get '*' do
 end
 
 def deploy_key
-  params[:version] ||= redis.get "study-rack:current"
-  # params[:version] ||= 'release'
+  params[:version] ||= redis.get "type-and-learn-client:current"
   case params[:version]
-  when 'release' then 'release'
-  when 'canary'  then  redis.lindex('releases', 0)
+  when 'release' then "type-and-learn-client:#{params[:release]}"
+  when 'canary'  then  redis.lindex('type-and-learn-client', 0)
   else
     params[:version]
   end
