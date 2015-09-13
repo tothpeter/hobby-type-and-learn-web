@@ -66,7 +66,7 @@ def insert_current_user_meta html
   if user
     serializer = UserSerializer.new user
     adapter = ActiveModel::Serializer::Adapter::JsonApi.new serializer, include: ['labels']
-    current_user_json = adapter.serializable_hash
+    current_user_json = adapter.serializable_hash.to_json
 
     html.insert(head_pos(html), "<meta name='current-user' content='#{current_user_json}'>")
   else
